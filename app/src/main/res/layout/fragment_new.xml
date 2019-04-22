@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <ProgressBar
+                android:visibility="invisible"
+                android:id="@+id/progress_upload"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <LinearLayout
+                android:padding="16dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_gravity="center"
+                    android:id="@+id/image_preview"
+                    app:civ_border_color="@color/colorAccent"
+                    android:src="@drawable/ic_photo_camera_black_24dp"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"/>
+            <Button
+                    android:id="@+id/btn_add_photo"
+                    android:layout_marginTop="8dp"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_gravity="center"
+                    android:textAllCaps="false"
+                    android:text="@string/add_photo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <EditText
+                    android:id="@+id/etTitleBug"
+                    android:hint="@string/name_hint"
+                    android:layout_marginTop="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            <EditText
+                    android:id="@+id/etDescBug"
+                    android:hint="@string/desc_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            <Button
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:text="Save"
+                    android:id="@+id/btnSaveBug"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+            android:background="?attr/selectableItemBackground"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:scaleType="centerCrop"
+                android:id="@+id/imageBug"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+        <LinearLayout
+                android:layout_marginStart="16dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:id="@+id/titleBug"
+                    android:textSize="18sp"
+                    android:textColor="#636363"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <TextView
+                    android:id="@+id/descBug"
+                    android:maxLines="3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+        <View
+                android:background="#B3B3B3"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"/>
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>
