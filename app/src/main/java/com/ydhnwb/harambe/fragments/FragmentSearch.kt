@@ -15,6 +15,7 @@ import com.ydhnwb.harambe.R
 import com.ydhnwb.harambe.adapters.BugAdapter
 import com.ydhnwb.harambe.models.BugModel
 import com.ydhnwb.harambe.networks.WrappedListResponse
+import com.ydhnwb.harambe.networks.WrappedResponse
 import com.ydhnwb.harambe.utilities.ApiUtils
 import kotlinx.android.synthetic.main.bottom_bar_search.view.*
 import kotlinx.android.synthetic.main.etc_empty_data.view.*
@@ -29,6 +30,7 @@ class FragmentSearch : Fragment() {
     private val bugService = ApiUtils.bugService()
     private var bugList = mutableListOf<BugModel>()
     private val TAG = "FragSearch"
+    private var request : Call<WrappedListResponse<BugModel>>? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View = inflater.inflate(R.layout.fragment_search, container, false)
 
@@ -55,18 +57,27 @@ class FragmentSearch : Fragment() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        if(request != null){
+            request!!.cancel()
+        }
+    }
+
     private fun runFilter(query : String){
         bugList.clear()
-        val request = bugService.search(query)
+        request = bugService.search(query)
         view!!.loading.visibility = View.VISIBLE
         view!!.empty_view_data.visibility = View.INVISIBLE
         view!!.empty_view_trouble.visibility = View.INVISIBLE
-        request.enqueue(object : Callback<WrappedListResponse<BugModel>>{
+        request!!.enqueue(object : Callback<WrappedListResponse<BugModel>>{
             override fun onFailure(call: Call<WrappedListResponse<BugModel>>, t: Throwable) {
                 Log.d(TAG, t.message)
-                view!!.loading.visibility = View.INVISIBLE
-                view!!.empty_view_trouble.visibility = View.VISIBLE
-                view!!.empty_view_data.visibility = View.INVISIBLE
+                if(view != null){
+                    view!!.loading.visibility = View.INVISIBLE
+                    view!!.empty_view_trouble.visibility = View.VISIBLE
+                    view!!.empty_view_data.visibility = View.INVISIBLE
+                }
             }
 
             override fun onResponse(call: Call<WrappedListResponse<BugModel>>, response: Response<WrappedListResponse<BugModel>>) {
@@ -79,6 +90,9 @@ class FragmentSearch : Fragment() {
                             bugList = body.data as MutableList
                             view!!.rvBugSearch.adapter = BugAdapter(bugList, context!!)
                         }else{
+                            if(view!!.rvBugSearch.adapter != null){
+                                view!!.rvBugSearch.adapter?.notifyDataSetChanged()
+                            }
                             view!!.empty_view_data.visibility = View.VISIBLE
                             view!!.empty_view_trouble.visibility = View.INVISIBLE
                             Toast.makeText(context, body.message, Toast.LENGTH_LONG).show()

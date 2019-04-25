@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit
 
 class ApiUtils {
     companion object {
-        private val API_URL = "https://bugscollector.herokuapp.com/api/"
+        public val API_URL = "https://bugscollector.herokuapp.com/"
         private var retrofit: Retrofit? = null
         private var okHttpClient = OkHttpClient.Builder().connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS).writeTimeout(30, TimeUnit.SECONDS).build()

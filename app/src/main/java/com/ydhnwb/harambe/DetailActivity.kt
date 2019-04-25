@@ -27,6 +27,7 @@ class DetailActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp)
         toolbar.setNavigationOnClickListener { finish() }
+        toolbar_layout.title = " "
         getIntentData()
         fetchData()
     }
@@ -41,7 +42,7 @@ class DetailActivity : AppCompatActivity() {
     private fun fetchData(){
         detail_name.text = bug.name
         detail_desc.text = bug.description
-        Glide.with(applicationContext).load("https://bugscollector.herokuapp.com/${bug.photo}").into(detail_image)
+        Glide.with(applicationContext).load("${ApiUtils.API_URL}${bug.photo}").into(detail_image)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

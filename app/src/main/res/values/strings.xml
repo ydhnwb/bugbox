@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">Bug box</string>
+    <string name="app_name">Bzzzzz</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-    <string name="add_photo">Add photo</string>
+    <string name="add_photo">Choose photo</string>
     <string name="did_you_know">Did you know?</string>
     <string name="give_me_more_fact">Give me more</string>
     <string name="close">Close</string>
@@ -104,6 +104,6 @@
     <string name="looks_like">Looks like you dont have any data for now</string>
     <string name="title_activity_edit">EditActivity</string>
     <string name="edit_photo">Edit photo</string>
-    <string name="name_hint">What kind of this bug</string>
-    <string name="desc_hint">Describe at leas 10 character about this bug</string>
+    <string name="name_hint">Latin name</string>
+    <string name="desc_hint">Describe little bit about this</string>
 </resources>

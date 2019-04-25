@@ -9,24 +9,24 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface BugService {
-    @GET("bugs")
+    @GET("api/ydh")
     fun all() : Call<WrappedListResponse<BugModel>>
 
-    @GET("bugs/{id}")
+    @GET("api/ydh/{id}")
     fun find(@Path("id") id : String) : Call<WrappedResponse<BugModel>>
 
     @Multipart
-    @POST("bugs")
+    @POST("api/ydh")
     fun new(@Part photo : MultipartBody.Part, @Part("name") name : RequestBody, @Part("description") description : RequestBody) : Call<WrappedResponse<BugModel>>
 
     @Multipart
-    @POST("bugs/{id}")
+    @POST("api/ydh/{id}")
     fun update(@Part photo : MultipartBody.Part, @Part("name") name : RequestBody, @Part("description") description : RequestBody, @Path("id") id : String) : Call<WrappedResponse<BugModel>>
 
-    @DELETE("bugs/{id}")
+    @DELETE("api/ydh/{id}")
     fun delete(@Path("id") id : String) : Call<WrappedResponse<BugModel>>
 
     @FormUrlEncoded
-    @POST("bugs/search/result")
+    @POST("api/ydh/search/result")
     fun search(@Field("search") search : String) : Call<WrappedListResponse<BugModel>>
 }

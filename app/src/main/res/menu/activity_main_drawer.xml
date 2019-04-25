@@ -7,11 +7,11 @@
         <item
                 android:id="@+id/nav_new"
                 android:icon="@drawable/ic_bug_report_black_24dp"
-                android:title="New bug"/>
+                android:title="Add new"/>
         <item
                 android:id="@+id/nav_show"
                 android:icon="@drawable/ic_format_list_bulleted_black_24dp"
-                android:title="Your collection"/>
+                android:title="Show all"/>
         <item
                 android:id="@+id/nav_search"
                 android:icon="@drawable/ic_search_black_24dp"

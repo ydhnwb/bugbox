@@ -13,21 +13,8 @@
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-        <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="98dp"
-                android:layout_centerInParent="true"
-                android:src="@drawable/ic_doodle_bugbox"
-                android:layout_height="98dp"/>
-        <TextView
-                android:textColor="@color/colorAccent"
-                android:fontFamily="monospace"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginTop="16dp"
-                android:text="@string/app_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
 
+        <ProgressBar android:layout_width="wrap_content" android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </RelativeLayout>

@@ -25,6 +25,7 @@ class FragmentShow : Fragment() {
     private var bugService = ApiUtils.bugService()
     private var bugList = mutableListOf<BugModel>()
     private val TAG = "FragShow"
+    private var request : Call<WrappedListResponse<BugModel>>? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View = inflater.inflate(R.layout.fragment_show, container, false)
 
@@ -38,17 +39,26 @@ class FragmentShow : Fragment() {
         loadData()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        if(request != null){
+            request?.cancel()
+        }
+    }
+
     private fun loadData(){
-        val request = bugService.all()
+        request = bugService.all()
         view!!.loading.visibility = View.VISIBLE
         view!!.empty_view_trouble.visibility = View.INVISIBLE
         view!!.empty_view_data.visibility = View.INVISIBLE
-        request.enqueue(object : Callback<WrappedListResponse<BugModel>>{
+        request!!.enqueue(object : Callback<WrappedListResponse<BugModel>>{
             override fun onFailure(call: Call<WrappedListResponse<BugModel>>, t: Throwable) {
                 Log.d(TAG, t.message)
-                view!!.loading.visibility = View.INVISIBLE
-                view!!.empty_view_trouble.visibility = View.VISIBLE
-                view!!.empty_view_data.visibility = View.INVISIBLE
+                if(view != null){
+                    view?.loading?.visibility = View.INVISIBLE
+                    view!!.empty_view_trouble.visibility = View.VISIBLE
+                    view!!.empty_view_data.visibility = View.INVISIBLE
+                }
             }
 
             override fun onResponse(call: Call<WrappedListResponse<BugModel>>, response: Response<WrappedListResponse<BugModel>>) {
@@ -62,8 +72,14 @@ class FragmentShow : Fragment() {
                             bugList = r.data as MutableList<BugModel>
                             if(bugList.isEmpty()){
                                 view!!.empty_view_data.visibility = View.VISIBLE
+                                if(view!!.rvBug.adapter != null){
+                                    view!!.rvBug.adapter?.notifyDataSetChanged()
+                                }
                             }else{ view?.rvBug?.adapter = BugAdapter(bugList, context!!) }
                         }else{
+                            if(view!!.rvBug.adapter != null){
+                                view!!.rvBug.adapter?.notifyDataSetChanged()
+                            }
                             view!!.empty_view_trouble.visibility = View.INVISIBLE
                             view!!.empty_view_data.visibility = View.VISIBLE
                         }

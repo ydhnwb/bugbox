@@ -10,10 +10,12 @@ import com.bumptech.glide.Glide
 import com.ydhnwb.harambe.DetailActivity
 import com.ydhnwb.harambe.R
 import com.ydhnwb.harambe.models.BugModel
+import com.ydhnwb.harambe.utilities.ApiUtils
+import kotlinx.android.synthetic.main.list_item_bug.view.*
 import kotlinx.android.synthetic.main.list_item_main.view.*
 
 class BugAdapter(private val mList : MutableList<BugModel>, private val mContext : Context) : RecyclerView.Adapter<BugAdapter.ViewHolder>() {
-    override fun onCreateViewHolder(p0: ViewGroup, p1: Int) = ViewHolder(LayoutInflater.from(p0.context).inflate(R.layout.list_item_main, p0, false))
+    override fun onCreateViewHolder(p0: ViewGroup, p1: Int) = ViewHolder(LayoutInflater.from(p0.context).inflate(R.layout.list_item_bug, p0, false))
 
     override fun getItemCount() = mList.size
 
@@ -29,9 +31,9 @@ class BugAdapter(private val mList : MutableList<BugModel>, private val mContext
                 i.putExtra("PHOTO", model.photo)
                 context.startActivity(i)
             }
-            itemView.descBug.text = model.description
-            itemView.titleBug.text = model.name
-            Glide.with(context).load("https://bugscollector.herokuapp.com/"+model.photo).into(itemView.imageBug)
+            itemView.list_desc.text = model.description
+            itemView.list_name.text = model.name
+            Glide.with(context).load(ApiUtils.API_URL+model.photo).into(itemView.list_image)
         }
     }
 }
